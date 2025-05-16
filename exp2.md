@@ -1,7 +1,7 @@
 
 ---
 
-````markdown
+
 # FML Lab - Experiment 2
 
 ## Aim
@@ -85,6 +85,3 @@ plt.show()
 
 ---
 
-```
-
-```
