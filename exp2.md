@@ -1,43 +1,50 @@
+# FML Lab – Experiment 2: Logistic Regression
+
+## 🎯 Aim
+To study and implement **Logistic Regression** using the Iris dataset, perform binary classification, and visualize the decision boundary.
 
 ---
 
+## 📚 Theory
 
-# FML Lab - Experiment 2
+**Logistic Regression** is a fundamental supervised learning algorithm used for **binary classification**. It predicts the probability of a class label based on a linear combination of input features passed through a **sigmoid function**.
 
-## Aim
-
-To study and implement **Logistic Regression** using the Iris dataset and visualize the decision boundary for binary classification.
-
----
-
-## Theory
-
-Logistic Regression is a **supervised learning algorithm** used for classification problems. Unlike Linear Regression which outputs continuous values, Logistic Regression predicts discrete classes—often 0 or 1 in binary classification.
-
-It uses the **sigmoid function** to map the linear combination of inputs to a value between 0 and 1, which can be interpreted as a probability:
+The sigmoid function is defined as:
 
 \[
-\sigma(z) = \frac{1}{1 + e^{-z}}
+\sigma(z) = \frac{1}{1 + e^{-z}} \quad \text{where } z = w^T x + b
 \]
 
-Where:
-
-- \( z = w^T x + b \)
-- \( w \) is the weight vector
 - \( x \) is the input feature vector
+- \( w \) are the learned weights
 - \( b \) is the bias term
 
-The algorithm optimizes the parameters \( w \) and \( b \) by minimizing the **log-loss (cross-entropy loss)** using gradient descent or other solvers.
+### 🔍 Classification Rule
 
-In this experiment, we simplify the visualization by using only the first two features of the Iris dataset and classify whether a sample belongs to class 2 (`Iris-virginica`) or not, turning the problem into a binary classification.
+After computing the probability \( \hat{y} = \sigma(z) \), we apply a threshold:
+- \( \hat{y} \geq 0.5 \Rightarrow \) Predict class 1
+- \( \hat{y} < 0.5 \Rightarrow \) Predict class 0
+
+### 🧮 Loss Function
+
+To train the model, we minimize the **cross-entropy loss**:
+
+\[
+\mathcal{L} = -[y \log(\hat{y}) + (1 - y) \log(1 - \hat{y})]
+\]
+
+This function penalizes confident but wrong predictions more heavily.
+
+### 📊 Application to Iris Dataset
+
+- The Iris dataset has 3 flower classes. We convert it into a binary classification problem: "Is the flower *Iris-virginica* or not?"
+- Only the **first two features** are used to enable easy 2D visualization of the decision boundary.
 
 ---
 
-## Code
+## 🧪 Code
 
 ```python
-# Lab 2 - Logistic Regression
-
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.datasets import load_iris
@@ -71,17 +78,3 @@ plt.xlabel("Feature 1")
 plt.ylabel("Feature 2")
 plt.title("Decision Boundary of Logistic Regression")
 plt.show()
-````
-
----
-
-## Learning Outcome
-
-* Understood the mathematical foundation of logistic regression and its use in binary classification.
-* Gained hands-on experience in using `scikit-learn` to implement logistic regression.
-* Visualized how logistic regression separates two classes using a decision boundary.
-* Learned how to manipulate and split datasets for training and testing.
-* Practiced plotting decision boundaries and interpreting classification outputs.
-
----
-
